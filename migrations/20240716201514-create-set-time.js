@@ -2,8 +2,8 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('set_times', {
-      id: {
+    await queryInterface.createTable('set_time', {
+      set_time_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -22,19 +22,9 @@ module.exports = {
         type: Sequelize.DATE
       },
       end_time: {
-        type: Sequelize.DATE
-      },
-      set_time_id: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   async down(queryInterface, Sequelize) {
