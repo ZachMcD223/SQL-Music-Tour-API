@@ -2,21 +2,13 @@
 const express = require('express')
 const app = express()
 const { Sequelize } = require('sequelize')
-
+const bandsController = require('./controllers/band_controller')
+const eventsController = require('./controllers/event_controller')
+const stagesController = require('./controllers/stage_controller')
 // CONFIGURATION / MIDDLEWARE
 require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-// SEQUELIZE CONNECTION
-// const sequelize = new Sequelize(process.env.PG_URI)
-
-// try {
-//     sequelize.authenticate() 
-//     console.log(`Connected with Sequelize at ${process.env.PG_URI}`) 
-// } catch(err) {
-//     console.log(`Unable to connect to PG: ${err}`) 
-// }
 
 // ROOT
 app.get('/', (req, res) => {
@@ -26,8 +18,9 @@ app.get('/', (req, res) => {
 })
 
 // CONTROLLERS 
-const bandsController = require('./controllers/bands_controller')
 app.use('/bands', bandsController)
+app.use('/events', eventsController)
+app.use('/stages', stagesController)
 
 // LISTEN
 app.listen(process.env.PORT, () => {
