@@ -7,17 +7,21 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ MeetGreet, SetTime }) {
       // meet and greets
       Band.hasMany(MeetGreet, {
+        foreignKey: 'band_id',
+        as: 'meet_greet'
+      })
+      Band.hasMany(SetTime, {
         foreignKey: "band_id",
-        as: "meet_greet",
-      });
+        as: "set_time"
+      })
     }
+  }
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-  }
-
+  
   Band.init({
     band_id: {
       type: DataTypes.INTEGER,
@@ -48,5 +52,5 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   return Band;
-};
-  
+
+}

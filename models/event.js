@@ -11,49 +11,57 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ stage, stage_events, meet_greet, set_time }) {
-    Event.belongsToMany(stage, {
-        primaryKey: 'event_id',
-        as: 'stages',
-        through: stage_events
-      })
-    Event.hasMany(meet_greet, {
-        primaryKey: "event_id",
-        as: "meet_greets"
-      })
-    Event.hasMany(set_time, {
-        primaryKey: "event_id",
-        as: "set_times"
-      })
+    static associate({ Stage, StageEvent, MeetGreet, SetTime }) {
+      // stages
+      Event.belongsToMany(Stage, {
+        foreignKey: "event_id",
+        as: "stage",
+        through: StageEvent
+      });
+      // meet and greets
+      Event.hasMany(MeetGreet, {
+        foreignKey: "event_id",
+        as: "meet_greet",
+      });
+      // set times
+      Event.hasMany(SetTime, {
+        foreignKey: "event_id",
+        as: "set_time",
+      });
     }
   }
 
-Event.init({
-    event_id: {
+  Event.init(
+    {
+      event_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
-    },
-    name: {
+        autoIncrement: true,
+        allowNull: false,
+      },
+      name: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    date: {
+        allowNull: false,
+      },
+      date: {
         type: DataTypes.DATE,
-        allowNull: false
-    },
-    start_time: {
+        allowNull: false,
+      },
+      start_time: {
         type: DataTypes.DATE,
-        allowNull: false
-    },
-    end_time: {
+        allowNull: false,
+      },
+      end_time: {
         type: DataTypes.DATE,
-        allowNull: false},
-  }, {
-    sequelize,
-    modelName: "Event",
-    tableName: "event",
-    timestamps: false
-  });
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: "Event",
+      tableName: "event",
+      timestamps: false,
+    }
+  );
   return Event;
 };

@@ -21,27 +21,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   MeetGreet.init({
-    event_id: {
+    meet_greet_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+  },
+  event_id: {
       type: DataTypes.SMALLINT,
       allowNull: false
-    },
-    band_id: {
+  },
+  band_id: {
       type: DataTypes.SMALLINT,
       allowNull: false
-    },
-    meet_start_time: {
+  },
+  meet_start_time: {
       type: DataTypes.DATE,
       allowNull: false
-    },
-    meet_end_time: {
+  },
+  meet_end_time: {
       type: DataTypes.DATE,
       allowNull: false
-    },
-      meet_greet_id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  }
+  },
   
   }, {
   sequelize,
