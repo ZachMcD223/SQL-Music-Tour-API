@@ -21,11 +21,13 @@ module.exports = (sequelize, DataTypes) => {
   },
     stage_id: {
       type:DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
+      foreignKey: true
     },
     event_id: {
       type:DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
+      foreignKey: true
     },
   }, {
     sequelize,

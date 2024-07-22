@@ -12,10 +12,12 @@ module.exports = {
       stage_id: {
         type: Sequelize.SMALLINT,
         allowNull: false,
+        foreignKey: true
       },
       event_id: {
         type: Sequelize.SMALLINT,
         allowNull: false,
+        foreignKey: true
       },
     });
   },

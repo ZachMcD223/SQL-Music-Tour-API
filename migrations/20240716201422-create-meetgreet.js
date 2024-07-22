@@ -1,9 +1,12 @@
 'use strict';
+
+const { ForeignKeyConstraintError } = require('sequelize');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('meet_greet', {
-      event_id: {
+      meet_greet_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -12,6 +15,7 @@ module.exports = {
       band_id: {
         type: Sequelize.SMALLINT,
         allowNull: false,
+        foreignKey: true,
       },
       meet_start_time: {
         type: Sequelize.DATE,
@@ -21,9 +25,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      meet_greet_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false, 
+      event_id: {
+        type: Sequelize.SMALLINT,
+        allowNull: false,
+        foreignKey: true, 
       },
     });
   },

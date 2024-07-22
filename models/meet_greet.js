@@ -28,11 +28,13 @@ module.exports = (sequelize, DataTypes) => {
   },
   event_id: {
       type: DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
+      foreignKey: true
   },
   band_id: {
       type: DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
+      foreignKey: true
   },
   meet_start_time: {
       type: DataTypes.DATE,

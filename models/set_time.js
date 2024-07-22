@@ -33,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
   },
   event_id: {
       type: DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
+      foreignKey: true
   },
   stage_id: {
       type: DataTypes.SMALLINT,
@@ -41,7 +42,8 @@ module.exports = (sequelize, DataTypes) => {
   },
   band_id: {
       type: DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
+      foreignKey: true
   },
   start_time: {
       type: DataTypes.DATE,

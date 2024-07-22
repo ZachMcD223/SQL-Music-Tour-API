@@ -24,6 +24,7 @@ module.exports = {
       event_id: {
         type: Sequelize.SMALLINT,
         allowNull: false,
+        foreignKey: true
       },
       stage_id: {
         type: Sequelize.SMALLINT,
