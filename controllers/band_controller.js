@@ -1,11 +1,11 @@
 // DEPENDENCIES
-const band = require("express").Router();
+const bands = require("express").Router();
 const db = require("../models");
 const { Band, MeetGreet, Event, SetTime } = db;
 const { Op } = require("sequelize");
 
 // FIND ALL BANDS
-band.get("/", async (req, res) => {
+bands.get("/", async (req, res) => {
     try {
         const foundBands = await Band.findAll({
             order: [["band_id", "DESC"]],
@@ -20,7 +20,7 @@ band.get("/", async (req, res) => {
 });
 
 // FIND A SPECIFIC BAND
-band.get("/:name", async (req, res) => {
+bands.get("/:name", async (req, res) => {
     try {
         const foundBand = await Band.findOne({
             where: { name: req.params.name },
@@ -60,11 +60,11 @@ band.get("/:name", async (req, res) => {
 });
 
 // CREATE A BAND
-band.post("/", async (req, res) => {
+bands.post("/", async (req, res) => {
     try {
         const newBand = await Band.create(req.body);
         res.status(200).json({
-            message: "Successfully inserted a new band",
+            message: "Successfully inserted a new bands",
             data: newBand,
         });
     } catch (err) {
@@ -73,7 +73,7 @@ band.post("/", async (req, res) => {
 });
 
 // UPDATE A BAND
-band.put("/:id", async (req, res) => {
+bands.put("/:id", async (req, res) => {
     try {
         const updatedBands = await Band.update(req.body, {
             where: {
@@ -81,7 +81,7 @@ band.put("/:id", async (req, res) => {
             },
         });
         res.status(200).json({
-            message: `Successfully updated ${updatedBands} band(s)`,
+            message: `Successfully updated ${updatedBands} bands(s)`,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -89,7 +89,7 @@ band.put("/:id", async (req, res) => {
 });
 
 // DELETE A BAND
-band.delete("/:id", async (req, res) => {
+bands.delete("/:id", async (req, res) => {
     try {
         const deletedBands = await Band.destroy({
             where: {
@@ -97,7 +97,7 @@ band.delete("/:id", async (req, res) => {
             },
         });
         res.status(200).json({
-            message: `Successfully deleted ${deletedBands} band(s)`,
+            message: `Successfully deleted ${deletedBands} bands(s)`,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -105,4 +105,4 @@ band.delete("/:id", async (req, res) => {
 });
 
 // EXPORT
-module.exports = band;
+module.exports = bands;
